@@ -1,1 +1,1 @@
-uhhh, just a bot ig
+a bot
