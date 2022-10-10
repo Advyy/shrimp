@@ -35,6 +35,18 @@ def spoiler(spoil):
     final = "".join(words)
     return final
 
+def str_to_hex(hex: str):
+
+    hexR = hex.replace("#", "")
+    hexS = f"0x{hexR}"
+    hexI = int(hexS, 16)
+    return hexI
+
+def merge(list1, list2):
+      
+    merged_list = [(list1[i], list2[i]) for i in range(0, len(list1))]
+    return merged_list
+
 def refresh_token(): 
     creds = read_json("creds")
 

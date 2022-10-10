@@ -2,7 +2,7 @@ import discord
 import os 
 import asyncio
 
-from discord.ext import commands, tasks
+from discord.ext import commands
 from utils.utils import read_json
 
 settings = read_json("settings")
@@ -23,7 +23,7 @@ async def on_ready():
     print(f"Logged on as: {client.user}")
     logs = client.get_channel(908277402994618418)
     new = "\n"
-
+    
     try: 
         synced = await client.tree.sync()
 
