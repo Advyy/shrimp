@@ -13,7 +13,7 @@ class PingCommand(commands.Cog):
         time_2 = time.perf_counter()
         lat= round((time_2-time_1)*1000)
 
-        embed = discord.Embed(color=discord.Colour.purple())
+        embed = discord.Embed(color=discord.Colour.dark_theme())
         embed.set_author(name="Ping", icon_url=f'{self.client.user.avatar_url}')
         embed.add_field(name="Bot Ping", value=f'{lat}ms')
         embed.add_field(name="API Ping", value=f'{round(self.client.latency * 1000)}ms')

@@ -1,4 +1,3 @@
-from asyncio.windows_events import NULL
 import discord
 import re
 
@@ -29,18 +28,18 @@ class Poll(commands.Cog):
         # this took way too fucking long to figure out bro, but merges emojis and questions into a list of tuples
         merged = merge(emojisList, questionsList)
 
-        # sorts through tuples
-        eAndQ = list(" ".join(tups) for tups in merged)
+        # # sorts through tuples
+        # eAndQ = list(" ".join(tups) for tups in merged)
 
         # eAndQ for i in zip(emojisList, questionsList) for eAndQ in i
         if color is None:
             # and this fucker joins the list of sorted tuples 😀🔫
-            embed = discord.Embed(title=f"{title}", description=f"{new.join(eAndQ)}")
+            embed = discord.Embed(title=f"{title}")
         else: 
             hex = str_to_hex(color)
             embed = discord.Embed(title=f"{title}", description=f"{new.join(questionsList)}", color=hex)
         for i in merged: 
-            embed.add_field(name=f"{tuple(i)[1]}", value=f"Emoji: {tuple(i)[0]}")
+            embed.add_field(name=f"{tuple(i)[1]}", value=f"Emoji: {tuple(i)[0]}", inline=False)
         embed.timestamp = datetime.now()
         embed.set_footer(text=f"Poll hosted by: {interaction.user.name} ({interaction.user.id})", icon_url=interaction.user.avatar.url)
         await interaction.response.send_message(embed=embed)
