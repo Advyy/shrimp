@@ -1,2 +1,5 @@
 *.json
 *.log
+asd
+logs/
+__pycache__

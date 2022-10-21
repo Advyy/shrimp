@@ -34,7 +34,13 @@ def spoiler(spoil):
 
     final = "".join(words)
     return final
-
+    
+def prepend(List, str):
+ 
+    # Using format()
+    str += '{0}'
+    List = ((map(str.format, List)))
+    return List
 def str_to_hex(hex: str):
 
     hexR = hex.replace("#", "")

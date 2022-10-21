@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 
 url = input("URL To Scan: ")
 urlReplaced = url.replace("https://", "")
-logging.basicConfig(filename=f"{urlReplaced}",level=logging.DEBUG,format='%(asctime)s %(message)s', datefmt='%d/%m/%Y %H:%M:%S')
+logging.basicConfig(filename=f".\\logs\\{urlReplaced}.log",level=logging.DEBUG,format='%(asctime)s %(message)s', datefmt='%d/%m/%Y %H:%M:%S')
 
 
 colorama.init()
@@ -29,8 +29,8 @@ def getAllWebLinks(url):
     urls = set()
     domainName = urlparse(url).netloc
     soup = BeautifulSoup(requests.get(url).content, "html.parser")
-    for aTag in soup.findAll("a"):
-        href = aTag.attrs.get("href")
+    for tag in soup.findAll("a"):
+        href = tag.attrs.get("href")
         if href == "" or str(href).startswith("tel") or str(href).startswith("mailto")  or href is None:
             continue
         try: 
@@ -67,16 +67,16 @@ def crawl(url, maxUrls=40):
             break
         crawl(link, maxUrls=maxUrls)
 
-if __name__ == "__main__":
-    try: 
-        crawl(f"{url}")
-    except KeyboardInterrupt: 
-        print("[+] Total Internal links:", len(internalUrls))
-        print("[+] Total External links:", len(externalUrls))
-        print("[+] Total URLs:", len(externalUrls) + len(internalUrls))
-        # if "Invalid" in e:
-        #     print(f"{RED} ERROR - InvalidSchema {RESET}")
-        # if "KeyboardInterrupt" in e: 
-        print(f"{RED} KeyboardInterrupt - Ended Program {RESET}")
-        quit()
-    # print("[+] Total crawled URLs:", maxUrls)
+    if __name__ == "__main__":
+        try: 
+            crawl(f"{url}")
+        except KeyboardInterrupt: 
+            print("[+] Total Internal links:", len(internalUrls))
+            print("[+] Total External links:", len(externalUrls))
+            print("[+] Total URLs:", len(externalUrls) + len(internalUrls))
+            # if "Invalid" in e:
+            #     print(f"{RED} ERROR - InvalidSchema {RESET}")
+            # if "KeyboardInterrupt" in e: 
+            print(f"{RED} KeyboardInterrupt - Ended Program {RESET}")
+            print("[+] Total crawled URLs:", maxUrls) 
+            quit()
